@@ -11,8 +11,10 @@ function App() {
       <Header />
       <div className={styles.app}>
         <SearchBar />
-        <SearchResults />
-        <Playlist />
+        <div className={styles.results}>
+          <SearchResults />
+          <Playlist />
+        </div>
       </div>
     </div>
   );
