@@ -1,9 +1,15 @@
 import styles from "../styles/SearchResults.module.css";
 
-const SearchResults = () => {
+const SearchResults = ({ filteredData }) => {
   return (
     <div className={styles.container}>
-      <h2>Results</h2>
+      {filteredData.length > 0 && (
+        <ul>
+          {filteredData.map((item) => (
+            <li key={item.id}>{item.name}</li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 };
