@@ -1,15 +1,11 @@
 import styles from "../styles/SearchResults.module.css";
+import Tracklist from "./Tracklist";
 
 const SearchResults = ({ filteredData }) => {
   return (
     <div className={styles.container}>
-      {filteredData.length > 0 && (
-        <ul>
-          {filteredData.map((item) => (
-            <li key={item.id}>{item.name}</li>
-          ))}
-        </ul>
-      )}
+      <h1 className={styles.h1}>Results: </h1>
+      <Tracklist filteredData={filteredData} />
     </div>
   );
 };

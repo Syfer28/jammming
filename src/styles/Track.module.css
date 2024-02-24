@@ -1,0 +1,15 @@
+.container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn {
+    height: 30px;
+    width: 30px;
+    cursor: pointer;
+    padding: 0;
+    line-height: 1;
+    font-size: 30px; 
+    border: none;
+    margin-right: 20px;
+}
