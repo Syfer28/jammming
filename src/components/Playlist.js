@@ -1,11 +1,15 @@
+import React, { useEffect } from "react";
 import styles from "../styles/Playlist.module.css";
 import Tracklist from "./Tracklist";
 
-const Playlist = () => {
+const Playlist = ({ playlist }) => {
+  useEffect(() => {
+    console.log("Playlist updated!");
+  }, [playlist]);
   return (
     <div className={styles.container}>
       <h2>Results</h2>
-      <Tracklist />
+      <Tracklist playlist={playlist} />
     </div>
   );
 };

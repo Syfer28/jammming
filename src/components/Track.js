@@ -10,7 +10,7 @@ const Track = ({ name, artist, album, onAdd }) => {
           {album} | {name}
         </h3>
       </div>
-      <button className={styles.btn} type="button">
+      <button className={styles.btn} type="button" onClick={onAdd}>
         +
       </button>
     </div>
