@@ -29,6 +29,12 @@ function App() {
     }
   };
 
+  const handleRemove = (track) => {
+    const updatedPlaylist = playlist.filter((item) => item.id !== track.id);
+    console.log("Removing from Playlist. Updated Playlist:", updatedPlaylist);
+    setPlaylist(updatedPlaylist);
+  };
+
   return (
     <div className={styles.container}>
       <Header />
@@ -36,7 +42,7 @@ function App() {
         <SearchBar term={term} setTerm={setTerm} onClick={handleSearch} />
         <div className={styles.results}>
           <SearchResults filteredData={filteredData} onAdd={handleAdd} />
-          <Playlist playlist={playlist} />
+          <Playlist playlist={playlist} onRemove={handleRemove} />
         </div>
       </div>
     </div>

@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "../styles/Track.module.css";
 
-const Track = ({ name, artist, album, onAdd }) => {
+const Track = ({ name, artist, album, onAdd, isOnPlaylist, onRemove }) => {
   return (
     <div className={styles.container}>
       <div className={styles.body}>
@@ -10,9 +10,15 @@ const Track = ({ name, artist, album, onAdd }) => {
           {album} | {name}
         </h3>
       </div>
-      <button className={styles.btn} type="button" onClick={onAdd}>
-        +
-      </button>
+      {isOnPlaylist ? (
+        <button className={styles.btn} type="button" onClick={onRemove}>
+          -
+        </button>
+      ) : (
+        <button className={styles.btn} type="button" onClick={onAdd}>
+          +
+        </button>
+      )}
     </div>
   );
 };

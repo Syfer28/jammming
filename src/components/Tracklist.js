@@ -1,7 +1,13 @@
 import styles from "../styles/Tracklist.module.css";
 import Track from "./Track";
 
-const Tracklist = ({ playlist, filteredData, onAdd }) => {
+const Tracklist = ({
+  playlist,
+  filteredData,
+  onAdd,
+  isOnPlaylist,
+  onRemove,
+}) => {
   const data = filteredData || playlist;
 
   return (
@@ -13,6 +19,8 @@ const Tracklist = ({ playlist, filteredData, onAdd }) => {
           artist={track.artist}
           album={track.album}
           onAdd={() => onAdd(track)}
+          isOnPlaylist={isOnPlaylist}
+          onRemove={() => onRemove(track)}
         />
       ))}
     </ul>
