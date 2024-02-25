@@ -1,12 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "../styles/Playlist.module.css";
 import Tracklist from "./Tracklist";
 
 const Playlist = ({ playlist, onRemove }) => {
+  const [playlistName, setPlaylistName] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
+
   return (
     <div className={styles.container}>
-      <h2>Results</h2>
-      <Tracklist playlist={playlist} isOnPlaylist={true} onRemove={onRemove} />
+      <form onClick={handleSubmit}>
+        <input
+          className={styles.input}
+          value={playlistName}
+          onChange={(e) => setPlaylistName(e.target.value)}
+          placeholder="Enter playlist name!"
+        />
+        <Tracklist
+          playlist={playlist}
+          isOnPlaylist={true}
+          onRemove={onRemove}
+        />
+        <button type="submit">SAVE TO SPOTIFY</button>
+      </form>
     </div>
   );
 };
