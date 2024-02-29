@@ -11,7 +11,7 @@ const Playlist = ({ playlist, onRemove }) => {
   };
 
   return (
-    <div className={styles.container}>
+    <div className={styles.container} style={{ color: "white" }}>
       <form onClick={handleSubmit}>
         <input
           className={styles.input}

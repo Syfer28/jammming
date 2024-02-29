@@ -7,8 +7,10 @@ import styles from "./App.module.css";
 import data from "../data/mock.json";
 
 function App() {
-  const [filteredData, setFilteredData] = useState([]);
   const [term, setTerm] = useState("");
+  // const [filtTrecks, setFiltTrecks] = useState([]);
+  // const [playlistName, setPlaylistName] = useState('');
+  const [filteredData, setFilteredData] = useState([]);
   const [playlist, setPlaylist] = useState([]);
 
   const handleSearch = () => {
