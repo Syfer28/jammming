@@ -15,23 +15,17 @@ function App() {
     const filtering = data.filter((item) =>
       item.name.toLowerCase().includes(term.toLowerCase())
     );
-    console.log("Filtered Data:", filtering);
     setFilteredData(filtering);
   };
 
   const handleAdd = (track) => {
-    // Check if the track is already in the playlist
     if (!playlist.some((item) => item.id === track.id)) {
-      // If not, add the track to the playlist
-      console.log("Adding to Playlist:", track);
-      console.log("Playlist now: ", playlist);
       setPlaylist((prevPlaylist) => [...prevPlaylist, track]);
     }
   };
 
   const handleRemove = (track) => {
     const updatedPlaylist = playlist.filter((item) => item.id !== track.id);
-    console.log("Removing from Playlist. Updated Playlist:", updatedPlaylist);
     setPlaylist(updatedPlaylist);
   };
 
