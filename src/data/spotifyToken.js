@@ -3,7 +3,7 @@ import SpotifyWebApi from "spotify-web-api-js";
 
 const spotifyApi = new SpotifyWebApi();
 
-const SpotifyToken = () => {
+const SpotifyToken = ({ term }) => {
   const CLIENT_ID = "f3bd737e182d4ecf89971ceee2a71f9a";
   const REDIRECT_URI = "http://localhost:3000/";
   const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize";
@@ -39,7 +39,7 @@ const SpotifyToken = () => {
   };
 
   const fetchTracks = async () => {
-    const url = "https://api.spotify.com/v1/search?q=3d&type=track";
+    const url = `https://api.spotify.com/v1/search?q=${term}&type=track`;
     try {
       const response = await fetch(url, {
         headers: { Authorization: `Bearer ${token}` },

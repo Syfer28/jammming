@@ -5,6 +5,7 @@ import SearchResults from "../components/SearchResults";
 import Playlist from "../components/Playlist";
 import styles from "./App.module.css";
 import data from "../data/mock.json";
+import SpotifyToken from "../data/spotifyToken";
 
 function App() {
   const [term, setTerm] = useState("");
@@ -13,11 +14,8 @@ function App() {
   const [filteredData, setFilteredData] = useState([]);
   const [playlist, setPlaylist] = useState([]);
 
-  const handleSearch = () => {
-    const filtering = data.filter((item) =>
-      item.name.toLowerCase().includes(term.toLowerCase())
-    );
-    setFilteredData(filtering);
+  const handleSearch = (searchTerm) => {
+    setTerm(searchTerm);
   };
 
   const handleAdd = (track) => {
@@ -33,9 +31,10 @@ function App() {
 
   return (
     <div className={styles.container}>
+      <SpotifyToken term={term} />
       <Header />
       <div className={styles.app}>
-        <SearchBar term={term} setTerm={setTerm} onClick={handleSearch} />
+        <SearchBar onSearch={handleSearch} />
         <div className={styles.results}>
           <SearchResults filteredData={filteredData} onAdd={handleAdd} />
           <Playlist playlist={playlist} onRemove={handleRemove} />

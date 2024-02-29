@@ -1,9 +1,12 @@
+import { useState } from "react";
 import styles from "../styles/SearchBar.module.css";
 
-const SearchBar = ({ onClick, term, setTerm }) => {
+const SearchBar = ({ onSearch }) => {
+  const [term, setTerm] = useState("");
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    onClick();
+    onSearch(term);
   };
 
   return (
