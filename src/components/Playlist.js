@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import styles from "../styles/Playlist.module.css";
 import Tracklist from "./Tracklist";
-import SpofiyToken from "../data/spotifyToken";
 
 const Playlist = ({ playlist, onRemove }) => {
   const [playlistName, setPlaylistName] = useState("");
@@ -26,7 +25,6 @@ const Playlist = ({ playlist, onRemove }) => {
         />
         <button type="submit">SAVE TO SPOTIFY</button>
       </form>
-      <SpofiyToken />
     </div>
   );
 };

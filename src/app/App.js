@@ -3,9 +3,8 @@ import Header from "../components/Header";
 import SearchBar from "../components/SearchBar";
 import SearchResults from "../components/SearchResults";
 import Playlist from "../components/Playlist";
-import styles from "./App.module.css";
-import data from "../data/mock.json";
 import SpotifyToken from "../data/spotifyToken";
+import styles from "./App.module.css";
 
 function App() {
   const [term, setTerm] = useState("");
@@ -16,6 +15,10 @@ function App() {
 
   const handleSearch = (searchTerm) => {
     setTerm(searchTerm);
+  };
+
+  const handleFilter = (tracks) => {
+    setFilteredData(tracks);
   };
 
   const handleAdd = (track) => {
@@ -31,9 +34,9 @@ function App() {
 
   return (
     <div className={styles.container}>
-      <SpotifyToken term={term} />
       <Header />
       <div className={styles.app}>
+        <SpotifyToken term={term} searchTracks={handleFilter} />
         <SearchBar onSearch={handleSearch} />
         <div className={styles.results}>
           <SearchResults filteredData={filteredData} onAdd={handleAdd} />

@@ -3,6 +3,28 @@
     justify-content: space-between;
 }
 
+.body {
+    display: flex;
+}
+
+.lilBody {
+    display: flex;
+}
+
+.name {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.artist {
+    border-right: 2px solid;
+    padding-right: 5px;
+}
+
+.album {
+    padding-left: 5px;
+}
+
 .btn {
     height: 30px;
     width: 30px;

@@ -16,8 +16,8 @@ const Tracklist = ({
         <Track
           key={track.id}
           name={track.name}
-          artist={track.artist}
-          album={track.album}
+          artist={track.artists[0].name}
+          album={track.album.name}
           onAdd={() => onAdd(track)}
           isOnPlaylist={isOnPlaylist}
           onRemove={() => onRemove(track)}
