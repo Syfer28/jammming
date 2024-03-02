@@ -28,7 +28,6 @@ const SpotifyToken = ({ term, searchTracks }) => {
 
       spotifyApi.setAccessToken(accessToken);
     }
-
     setToken(accessToken);
   }, []);
 
@@ -58,6 +57,26 @@ const SpotifyToken = ({ term, searchTracks }) => {
     };
     fetchTracks();
   }, [term, token]);
+
+  useEffect(() => {
+    const fetchUserId = async () => {
+      if (!token) return; // Skip if no token
+
+      const url = "https://api.spotify.com/v1/me";
+      try {
+        const response = await fetch(url, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+
+        const data = await response.json();
+        console.log(data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchUserId();
+  }, [token]);
 
   return (
     <div className={styles.container}>
