@@ -57,7 +57,7 @@ const SpotifyToken = ({ term, searchTracks }) => {
       }
     };
     fetchTracks();
-  }, [searchTracks, term, token]);
+  }, [term, token]);
 
   return (
     <div className={styles.container}>

@@ -1,12 +1,20 @@
 import React from "react";
 import styles from "../styles/Track.module.css";
 
-const Track = ({ name, artist, album, onAdd, isOnPlaylist, onRemove }) => {
+const Track = ({
+  name,
+  artist,
+  album,
+  image,
+  onAdd,
+  isOnPlaylist,
+  onRemove,
+}) => {
   return (
     <div className={styles.container}>
       <div className={styles.body}>
         <div className={styles.bodyImage}>
-          <img src="#" alt="#" />
+          <img className={styles.img} src={image} alt="#" />
         </div>
         <div className={styles.bodyText}>
           <p className={styles.name}>{name}</p>
