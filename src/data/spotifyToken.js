@@ -4,13 +4,14 @@ import styles from "../styles/spotifyToken.module.css";
 
 const spotifyApi = new SpotifyWebApi();
 
-const SpotifyToken = ({ term, searchTracks }) => {
+const SpotifyToken = ({ term, searchTracks, playlistName }) => {
   const CLIENT_ID = "f3bd737e182d4ecf89971ceee2a71f9a";
   const REDIRECT_URI = "http://localhost:3000/";
   const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize";
   const RESPONSE_TYPE = "token";
 
   const [token, setToken] = useState("");
+  const [userId, setUserId] = useState("");
 
   useEffect(() => {
     const hash = window.location.hash;
@@ -49,7 +50,6 @@ const SpotifyToken = ({ term, searchTracks }) => {
 
         const data = await response.json();
 
-        console.log(data);
         searchTracks(data.tracks.items);
       } catch (error) {
         console.error(error);
@@ -69,7 +69,7 @@ const SpotifyToken = ({ term, searchTracks }) => {
         });
 
         const data = await response.json();
-        console.log(data);
+        setUserId(data.id);
       } catch (error) {
         console.error(error);
       }

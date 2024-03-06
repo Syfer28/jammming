@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import styles from "../styles/Playlist.module.css";
 import Tracklist from "./Tracklist";
 
-const Playlist = ({ playlist, onRemove }) => {
+const Playlist = ({ playlist, onRemove, onNameChange }) => {
   const [playlistName, setPlaylistName] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    onNameChange(playlistName);
   };
 
   return (
@@ -18,12 +19,12 @@ const Playlist = ({ playlist, onRemove }) => {
           onChange={(e) => setPlaylistName(e.target.value)}
           placeholder="Enter playlist name!"
         />
+        <button type="submit">SAVE TO SPOTIFY</button>
         <Tracklist
           playlist={playlist}
           isOnPlaylist={true}
           onRemove={onRemove}
         />
-        <button type="submit">SAVE TO SPOTIFY</button>
       </form>
     </div>
   );

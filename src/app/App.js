@@ -8,13 +8,16 @@ import styles from "./App.module.css";
 
 function App() {
   const [term, setTerm] = useState("");
-  // const [filtTrecks, setFiltTrecks] = useState([]);
-  // const [playlistName, setPlaylistName] = useState('');
+  const [playlistName, setPlaylistName] = useState("");
   const [filteredData, setFilteredData] = useState([]);
   const [playlist, setPlaylist] = useState([]);
 
   const handleSearch = (searchTerm) => {
     setTerm(searchTerm);
+  };
+
+  const handleChange = (playlistTerm) => {
+    setPlaylistName(playlistTerm);
   };
 
   const handleFilter = (tracks) => {
@@ -36,11 +39,19 @@ function App() {
     <div className={styles.container}>
       <Header />
       <div className={styles.app}>
-        <SpotifyToken term={term} searchTracks={handleFilter} />
+        <SpotifyToken
+          term={term}
+          searchTracks={handleFilter}
+          playlistTerm={playlistName}
+        />
         <SearchBar onSearch={handleSearch} />
         <div className={styles.results}>
           <SearchResults filteredData={filteredData} onAdd={handleAdd} />
-          <Playlist playlist={playlist} onRemove={handleRemove} />
+          <Playlist
+            playlist={playlist}
+            onRemove={handleRemove}
+            onNameChange={handleChange}
+          />
         </div>
       </div>
     </div>
