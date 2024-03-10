@@ -8,7 +8,8 @@ const Token = ({ getToken }) => {
   const REDIRECT_URI = "http://localhost:3000/";
   const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize";
   const RESPONSE_TYPE = "token";
-  const SCOPES = "playlist-modify-private user-library-read";
+  const SCOPES =
+    "playlist-modify-private user-library-read playlist-modify-public";
 
   const [token, setToken] = useState("");
 

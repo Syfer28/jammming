@@ -43,6 +43,7 @@ function App() {
           term={term}
           searchTracks={handleFilter}
           playlistTerm={playlistName}
+          getPlaylist={playlist}
         />
         <SearchBar onSearch={handleSearch} />
         <div className={styles.results}>

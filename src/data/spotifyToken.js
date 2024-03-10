@@ -2,10 +2,11 @@ import React, { useState, useEffect } from "react";
 import SpotifyWebApi from "spotify-web-api-js";
 import styles from "../styles/spotifyToken.module.css";
 import Token from "./Token";
+import Playlist from "../components/Playlist";
 
 const spotifyApi = new SpotifyWebApi();
 
-const SpotifyToken = ({ term, searchTracks, playlistTerm }) => {
+const SpotifyToken = ({ term, searchTracks, playlistTerm, getPlaylist }) => {
   const [token, setToken] = useState("");
   const [userId, setUserId] = useState("");
   const header = { Authorization: `Bearer ${token}` };
@@ -31,49 +32,41 @@ const SpotifyToken = ({ term, searchTracks, playlistTerm }) => {
   }, [term, token]);
 
   useEffect(() => {
+    spotifyApi.getAccessToken(token);
     const fetchUserId = async () => {
-      if (!token) return; // Skip if no token
-
-      const url = "https://api.spotify.com/v1/me";
-      try {
-        const response = await fetch(url, {
-          headers: header,
-        });
-
-        const data = await response.json();
-        setUserId(data.id);
-      } catch (error) {
-        console.error(error);
-      }
+      spotifyApi.getMe().then(
+        function (data) {
+          setUserId(data.id);
+        },
+        function (err) {
+          console.log("Something went wrong!", err);
+        }
+      );
     };
 
     fetchUserId();
   }, [token]);
 
   useEffect(() => {
+    spotifyApi.getAccessToken(token);
+    const trackList = getPlaylist.map((itemId) => itemId.uri);
     const createPlaylist = async () => {
-      const url = `https://api.spotify.com/v1/users/${userId}/playlists`;
-      const playlistBody = {
-        name: playlistTerm,
-        description: "desc",
-        public: false,
-      };
-
       try {
-        const response = await fetch(url, {
-          method: "POST",
-          headers: header,
-          body: JSON.stringify(playlistBody),
+        const createdPlaylist = await spotifyApi.createPlaylist(userId, {
+          name: playlistTerm,
+          description: "My description",
+          public: false,
         });
-
-        if (!response.ok) {
-          const errorData = await response.json();
-          throw new Error(errorData.error.message);
-        }
-
-        console.log("Created");
+        spotifyApi.addTracksToPlaylist(createdPlaylist.id, [...trackList]).then(
+          function (data) {
+            console.log("Added tracks to playlist!");
+          },
+          function (err) {
+            console.log("Something went wrong!", err);
+          }
+        );
       } catch (error) {
-        console.log("Error: ", error.message);
+        console.error(error.message);
       }
     };
 
