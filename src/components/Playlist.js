@@ -17,7 +17,7 @@ const Playlist = ({ playlist, onRemove, onNameChange }) => {
           className={styles.input}
           value={playlistName}
           onChange={(e) => setPlaylistName(e.target.value)}
-          placeholder="Enter playlist name!"
+          placeholder="Enter search term"
         />
         <button type="submit">SAVE TO SPOTIFY</button>
         <Tracklist

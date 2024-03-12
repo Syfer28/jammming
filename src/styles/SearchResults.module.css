@@ -5,14 +5,10 @@
     background-color: rgba(1, 12, 63, 0.8);
     backdrop-filter: blur(5px);
     color: white;
-}
-
-.h1 {
-    padding-top: 30px;
     padding-left: 30px;
+    padding-top: 30px;
 }
 
 .ul {
     list-style: none;
-    padding: 20px;
 }
