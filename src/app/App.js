@@ -35,6 +35,10 @@ function App() {
     setPlaylist(updatedPlaylist);
   };
 
+  const handlePlaylistClear = () => {
+    setPlaylist([]);
+  };
+
   return (
     <div className={styles.container}>
       <Header />
@@ -44,6 +48,7 @@ function App() {
           searchTracks={handleFilter}
           playlistTerm={playlistName}
           getPlaylist={playlist}
+          onClearPlaylist={handlePlaylistClear}
         />
         <SearchBar onSearch={handleSearch} />
         <div className={styles.results}>

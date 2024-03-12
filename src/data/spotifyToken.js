@@ -6,7 +6,13 @@ import Playlist from "../components/Playlist";
 
 const spotifyApi = new SpotifyWebApi();
 
-const SpotifyToken = ({ term, searchTracks, playlistTerm, getPlaylist }) => {
+const SpotifyToken = ({
+  term,
+  searchTracks,
+  playlistTerm,
+  getPlaylist,
+  onClearPlaylist,
+}) => {
   const [token, setToken] = useState("");
   const [userId, setUserId] = useState("");
   const header = { Authorization: `Bearer ${token}` };
@@ -60,6 +66,7 @@ const SpotifyToken = ({ term, searchTracks, playlistTerm, getPlaylist }) => {
         spotifyApi.addTracksToPlaylist(createdPlaylist.id, [...trackList]).then(
           function (data) {
             console.log("Added tracks to playlist!");
+            onClearPlaylist();
           },
           function (err) {
             console.log("Something went wrong!", err);
