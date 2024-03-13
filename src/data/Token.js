@@ -31,7 +31,7 @@ const Token = ({ getToken }) => {
     }
     getToken(accessToken);
     setToken(accessToken);
-  }, []);
+  }, [getToken]);
 
   const logout = () => {
     setToken("");
@@ -48,7 +48,10 @@ const Token = ({ getToken }) => {
           Login to Spotify
         </a>
       ) : (
-        <button onClick={logout}>Logout</button>
+        // eslint-disable-next-line jsx-a11y/anchor-is-valid
+        <a href="#" onClick={logout}>
+          Logout
+        </a>
       )}
     </div>
   );

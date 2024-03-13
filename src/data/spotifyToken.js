@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import SpotifyWebApi from "spotify-web-api-js";
 import styles from "../styles/spotifyToken.module.css";
 import Token from "./Token";
-import Playlist from "../components/Playlist";
 
 const spotifyApi = new SpotifyWebApi();
 
@@ -35,6 +34,7 @@ const SpotifyToken = ({
       }
     };
     fetchTracks();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [term, token]);
 
   useEffect(() => {
@@ -78,6 +78,7 @@ const SpotifyToken = ({
     };
 
     createPlaylist();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [playlistTerm]);
 
   const handleTokenChange = (newToken) => {
