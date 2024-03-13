@@ -5,7 +5,7 @@ const spotifyApi = new SpotifyWebApi();
 
 const Token = ({ getToken }) => {
   const CLIENT_ID = "f3bd737e182d4ecf89971ceee2a71f9a";
-  const REDIRECT_URI = "http://localhost:3000/";
+  const REDIRECT_URI = "https://syfer28.github.io/jammming/";
   const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize";
   const RESPONSE_TYPE = "token";
   const SCOPES =
