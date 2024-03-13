@@ -1,0 +1,14 @@
+.container {
+    position: absolute;
+    right: 0;
+    margin-right: 20px;
+}
+
+.btn {
+    text-decoration: none;
+    background: #1DB954;
+    border-radius: 20px;
+    padding: 10px 25px;
+    color: white;
+    text-transform: uppercase;
+}

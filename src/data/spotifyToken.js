@@ -34,7 +34,6 @@ const SpotifyToken = ({
       }
     };
     fetchTracks();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [term, token]);
 
   useEffect(() => {
