@@ -18,8 +18,7 @@
     border-radius: 8px;
     opacity: 70%;
     border: 0;
-    transition: opacity, .2s;
-
+    transition: opacity, 0.3s;
     text-align: center;
 }
 

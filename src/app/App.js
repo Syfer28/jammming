@@ -11,6 +11,7 @@ function App() {
   const [playlistName, setPlaylistName] = useState("");
   const [filteredData, setFilteredData] = useState([]);
   const [playlist, setPlaylist] = useState([]);
+  const [clearMessage, setClearMessage] = useState("");
 
   const handleSearch = (searchTerm) => {
     setTerm(searchTerm);
@@ -27,6 +28,7 @@ function App() {
   const handleAdd = (track) => {
     if (!playlist.some((item) => item.id === track.id)) {
       setPlaylist((prevPlaylist) => [...prevPlaylist, track]);
+      setClearMessage("");
     }
   };
 
@@ -37,6 +39,7 @@ function App() {
 
   const handlePlaylistClear = () => {
     setPlaylist([]);
+    setClearMessage("Playlist created succesfully");
   };
 
   return (
@@ -57,6 +60,7 @@ function App() {
             playlist={playlist}
             onRemove={handleRemove}
             onNameChange={handleChange}
+            clearMessage={clearMessage}
           />
         </div>
       </div>
