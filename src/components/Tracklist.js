@@ -11,20 +11,22 @@ const Tracklist = ({
   const data = filteredData || playlist;
 
   return (
-    <ul className={styles.ul}>
-      {data.map((track) => (
-        <Track
-          key={track.id}
-          name={track.name}
-          artist={track.artists[0].name}
-          album={track.album.name}
-          image={track.album.images[0].url}
-          onAdd={() => onAdd(track)}
-          isOnPlaylist={isOnPlaylist}
-          onRemove={() => onRemove(track)}
-        />
-      ))}
-    </ul>
+    <div className={styles.container}>
+      <ul className={styles.ul}>
+        {data.map((track) => (
+          <Track
+            key={track.id}
+            name={track.name}
+            artist={track.artists[0].name}
+            album={track.album.name}
+            image={track.album.images[0].url}
+            onAdd={() => onAdd(track)}
+            isOnPlaylist={isOnPlaylist}
+            onRemove={() => onRemove(track)}
+          />
+        ))}
+      </ul>
+    </div>
   );
 };
 

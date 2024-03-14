@@ -34,54 +34,52 @@ const SpotifyToken = ({
       }
     };
     fetchTracks();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [term, token]);
 
   useEffect(() => {
-    spotifyApi.getAccessToken(token);
     const fetchUserId = async () => {
-      spotifyApi.getMe().then(
-        function (data) {
-          setUserId(data.id);
-        },
-        function (err) {
-          console.log("Something went wrong!", err);
-        }
-      );
+      try {
+        const data = await spotifyApi.getMe();
+        setUserId(data.id);
+        localStorage.setItem("userId", data.id);
+      } catch (error) {
+        console.log("Error fetching user ID:", error);
+      }
     };
 
     fetchUserId();
   }, [token]);
 
   useEffect(() => {
-    spotifyApi.getAccessToken(token);
-    const trackList = getPlaylist.map((itemId) => itemId.uri);
-    const createPlaylist = async () => {
-      try {
-        const createdPlaylist = await spotifyApi.createPlaylist(userId, {
-          name: playlistTerm,
-          description: "My description",
-          public: false,
-        });
-        spotifyApi.addTracksToPlaylist(createdPlaylist.id, [...trackList]).then(
-          function (data) {
-            console.log("Added tracks to playlist!");
-            onClearPlaylist();
-          },
-          function (err) {
-            console.log("Something went wrong!", err);
-          }
-        );
-      } catch (error) {
-        console.error(error.message);
-      }
-    };
+    if (token && userId && playlistTerm && getPlaylist.length > 0) {
+      const trackList = getPlaylist.map((itemId) => itemId.uri);
 
-    createPlaylist();
+      const createPlaylist = async () => {
+        try {
+          const createdPlaylist = await spotifyApi.createPlaylist(userId, {
+            name: playlistTerm,
+            description: "My description",
+            public: false,
+          });
+
+          await spotifyApi.addTracksToPlaylist(createdPlaylist.id, trackList);
+
+          console.log("Playlist created successfully!");
+          onClearPlaylist();
+        } catch (error) {
+          console.error("Error creating playlist:", error.message);
+        }
+      };
+
+      createPlaylist();
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [playlistTerm]);
 
   const handleTokenChange = (newToken) => {
     setToken(newToken);
+    spotifyApi.setAccessToken(newToken);
   };
 
   return (
