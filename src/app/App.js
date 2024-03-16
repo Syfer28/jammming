@@ -12,6 +12,7 @@ function App() {
   const [filteredData, setFilteredData] = useState([]);
   const [playlist, setPlaylist] = useState([]);
   const [clearMessage, setClearMessage] = useState("");
+  const [trackId, setTrackId] = useState("");
 
   const handleSearch = (searchTerm) => {
     setTerm(searchTerm);
@@ -23,6 +24,7 @@ function App() {
 
   const handleFilter = (tracks) => {
     setFilteredData(tracks);
+    setTrackId(tracks.map((track) => track.id));
   };
 
   const handleAdd = (track) => {
@@ -52,6 +54,7 @@ function App() {
           playlistTerm={playlistName}
           getPlaylist={playlist}
           onClearPlaylist={handlePlaylistClear}
+          trackId={trackId}
         />
         <SearchBar onSearch={handleSearch} />
         <div className={styles.results}>

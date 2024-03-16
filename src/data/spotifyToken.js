@@ -11,6 +11,7 @@ const SpotifyToken = ({
   playlistTerm,
   getPlaylist,
   onClearPlaylist,
+  trackId,
 }) => {
   const [token, setToken] = useState("");
   const [userId, setUserId] = useState("");
@@ -81,6 +82,8 @@ const SpotifyToken = ({
     setToken(newToken);
     spotifyApi.setAccessToken(newToken);
   };
+
+  console.log(trackId);
 
   return (
     <div className={styles.container}>
