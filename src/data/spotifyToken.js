@@ -103,6 +103,19 @@ const SpotifyToken = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [playlistTerm]);
 
+  useEffect(() => {
+    const fetchPlaylist = async () => {
+      try {
+        const data = await spotifyApi.getUserPlaylists(userId);
+        console.log(data);
+      } catch (error) {
+        console.log("Error fetching user ID:", error);
+      }
+    };
+
+    fetchPlaylist();
+  }, [token, userId]);
+
   const handleTokenChange = (newToken) => {
     setToken(newToken);
     spotifyApi.setAccessToken(newToken);

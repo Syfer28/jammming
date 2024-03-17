@@ -7,21 +7,6 @@ const Preview = ({ previewUri, image }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const audioRef = React.createRef();
-  //   const [volume, setVolume] = useState(0); // Уровень громкости
-
-  //   useEffect(() => {
-  //     if (isPlaying) {
-  //       const interval = setInterval(() => {
-  //         if (audioRef.current.volume < 1) {
-  //           setVolume((prevVolume) => Math.min(prevVolume + 0.1, 1));
-  //           audioRef.current.volume = volume;
-  //         } else {
-  //           clearInterval(interval);
-  //         }
-  //       }, 200); // Интервал изменения громкости (200 мс)
-  //       return () => clearInterval(interval);
-  //     }
-  //   }, [isPlaying]);
 
   const togglePlay = () => {
     if (isPlaying) {

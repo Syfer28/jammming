@@ -12,7 +12,7 @@ const Token = ({ getToken }) => {
   const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize";
   const RESPONSE_TYPE = "token";
   const SCOPES =
-    "playlist-modify-private user-library-read playlist-modify-public";
+    "playlist-modify-private user-library-read playlist-modify-public playlist-read-private";
 
   const [token, setToken] = useState("");
 
