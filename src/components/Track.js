@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "../styles/Track.module.css";
+import Preview from "./Preview";
 
 const Track = ({
   name,
@@ -9,12 +10,13 @@ const Track = ({
   onAdd,
   isOnPlaylist,
   onRemove,
+  previewUri,
 }) => {
   return (
     <div className={styles.container}>
       <div className={styles.body}>
         <div className={styles.bodyImage}>
-          <img className={styles.img} src={image} alt="#" />
+          <Preview previewUri={previewUri} image={image} />
         </div>
         <div className={styles.bodyText}>
           <p className={styles.name}>{name}</p>

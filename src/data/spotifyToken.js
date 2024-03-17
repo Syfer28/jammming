@@ -12,6 +12,7 @@ const SpotifyToken = ({
   getPlaylist,
   onClearPlaylist,
   trackId,
+  getPreviewUri,
 }) => {
   const [token, setToken] = useState("");
   const [userId, setUserId] = useState("");
@@ -39,6 +40,30 @@ const SpotifyToken = ({
   }, [term, token]);
 
   useEffect(() => {
+    const fetchTracks = async () => {
+      try {
+        if (!trackId) {
+          return;
+        }
+        const trackPromises = trackId.map(async (id) => {
+          try {
+            const data = await spotifyApi.getTrack(id);
+            return data.preview_url;
+          } catch (error) {
+            console.log("Error fetching track:", error);
+          }
+        });
+
+        const trackData = await Promise.all(trackPromises);
+        getPreviewUri(trackData);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchTracks();
+  }, [token, trackId]);
+
+  useEffect(() => {
     const fetchUserId = async () => {
       try {
         const data = await spotifyApi.getMe();
@@ -53,7 +78,7 @@ const SpotifyToken = ({
   }, [token]);
 
   useEffect(() => {
-    if (token && userId && playlistTerm && getPlaylist.length > 0) {
+    if (token && userId && playlistTerm && getPlaylist) {
       const trackList = getPlaylist.map((itemId) => itemId.uri);
 
       const createPlaylist = async () => {
@@ -82,8 +107,6 @@ const SpotifyToken = ({
     setToken(newToken);
     spotifyApi.setAccessToken(newToken);
   };
-
-  console.log(trackId);
 
   return (
     <div className={styles.container}>

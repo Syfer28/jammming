@@ -13,6 +13,7 @@ function App() {
   const [playlist, setPlaylist] = useState([]);
   const [clearMessage, setClearMessage] = useState("");
   const [trackId, setTrackId] = useState("");
+  const [previewUri, setPreviewUri] = useState([]);
 
   const handleSearch = (searchTerm) => {
     setTerm(searchTerm);
@@ -25,6 +26,10 @@ function App() {
   const handleFilter = (tracks) => {
     setFilteredData(tracks);
     setTrackId(tracks.map((track) => track.id));
+  };
+
+  const handleUri = (uri) => {
+    setPreviewUri(uri);
   };
 
   const handleAdd = (track) => {
@@ -55,10 +60,15 @@ function App() {
           getPlaylist={playlist}
           onClearPlaylist={handlePlaylistClear}
           trackId={trackId}
+          getPreviewUri={handleUri}
         />
         <SearchBar onSearch={handleSearch} />
         <div className={styles.results}>
-          <SearchResults filteredData={filteredData} onAdd={handleAdd} />
+          <SearchResults
+            filteredData={filteredData}
+            onAdd={handleAdd}
+            previewUri={previewUri}
+          />
           <Playlist
             playlist={playlist}
             onRemove={handleRemove}

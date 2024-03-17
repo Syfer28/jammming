@@ -7,15 +7,17 @@ const Tracklist = ({
   onAdd,
   isOnPlaylist,
   onRemove,
+  previewUri,
 }) => {
   const data = filteredData || playlist;
 
   return (
     <div className={styles.container}>
       <ul className={styles.ul}>
-        {data.map((track) => (
+        {data.map((track, index) => (
           <Track
             key={track.id}
+            previewUri={previewUri[index]}
             name={track.name}
             artist={track.artists[0].name}
             album={track.album.name}
