@@ -17,7 +17,9 @@ const Tracklist = ({
         {data.map((track, index) => (
           <Track
             key={track.id}
-            previewUri={previewUri[index]}
+            previewUri={
+              previewUri && previewUri[index] ? previewUri[index] : ""
+            }
             name={track.name}
             artist={track.artists[0].name}
             album={track.album.name}

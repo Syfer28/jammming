@@ -2,7 +2,13 @@ import React, { useState, useEffect } from "react";
 import styles from "../styles/Playlist.module.css";
 import Tracklist from "./Tracklist";
 
-const Playlist = ({ playlist, onRemove, onNameChange, clearMessage }) => {
+const Playlist = ({
+  playlist,
+  onRemove,
+  onNameChange,
+  clearMessage,
+  previewUri,
+}) => {
   const [playlistName, setPlaylistName] = useState("");
   const [submittedEmpty, setSubmittedEmpty] = useState(false);
 
@@ -47,6 +53,7 @@ const Playlist = ({ playlist, onRemove, onNameChange, clearMessage }) => {
           playlist={playlist}
           isOnPlaylist={true}
           onRemove={onRemove}
+          previewUri={previewUri}
         />
       </form>
     </div>

@@ -74,6 +74,7 @@ function App() {
             onRemove={handleRemove}
             onNameChange={handleChange}
             clearMessage={clearMessage}
+            previewUri={previewUri}
           />
         </div>
       </div>
